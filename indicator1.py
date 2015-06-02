@@ -24,13 +24,24 @@
 # <http://www.gnu.org/licenses>
 #
  
-import gobject, gtk, appindicator, os, os.path
+import gobject, gtk, appindicator, os, os.path,time
  
 def menuitem_response(w, buf):
-    if os.path.isfile("BlueCloud.jpg"):
+    if os.path.isfile('/home/deedoo/Pictures/Wall/'+buf):
       bashJoined = 'gsettings set org.gnome.desktop.background picture-uri file:///home/deedoo/Pictures/Wall/'+ buf
       os.system(bashJoined) 
 
+def addQuit(x,y):
+  menu_items = gtk.MenuItem("Quit son!")
+  menu.append(menu_items)
+  menu_items.connect("activate", gtk.main_quit)
+  menu_items.show()
+
+def refresh(x,y):
+    
+#  gtk.main_quit
+#  print "blahhhhhh"
+  print os.path.dirname(os.path.realpath(__file__))
 
 if __name__ == "__main__":
   ind = appindicator.Indicator ("example-simple-client",
@@ -38,14 +49,14 @@ if __name__ == "__main__":
                               appindicator.CATEGORY_APPLICATION_STATUS)
   ind.set_status (appindicator.STATUS_ACTIVE)
   ind.set_attention_icon ("indicator-messages-new")
- 
   menu = gtk.Menu()
  
 
-  for i in range(len([name for name in os.listdir('.') if os.path.isfile(name)])): #lists file names in dir
-    buf = os.listdir(".")[i] #gives number of files in dir
+
+  for i in range(len([name for name in os.listdir('/home/deedoo/Pictures/Wall/') if os.path.isfile('/home/deedoo/Pictures/Wall/'+name)])): #lists file names in dir
+    buf = os.listdir('/home/deedoo/Pictures/Wall')[i] #gives number of files in dir
  
-    if "jpg" in buf or "png" in buf:
+    if "jpg" in buf or "png" in buf or "JPG" in buf or "PNG" in buf:
 
       menu_items = gtk.MenuItem(buf)
  
@@ -58,11 +69,25 @@ if __name__ == "__main__":
     # show the items
       menu_items.show()
   
-  menu_items = gtk.MenuItem("Quit!")
+#  menu_items = gtk.MenuItem("Quit more son!")
+#  menu.append(menu_items)
+#  menu_items.connect("activate", addQuit,"nuffin")
+#  menu_items.show()
+  
+  
+  menu_items = gtk.MenuItem(buf)#refresh
+  menu.append(menu_items)
+  menu_items.connect("activate", refresh,"blah")
+  menu_items.show()
+
+  menu_items = gtk.MenuItem("Quit son!")
   menu.append(menu_items)
   menu_items.connect("activate", gtk.main_quit)
   menu_items.show()
 
+
+
   ind.set_menu(menu)
  
   gtk.main()
+  
