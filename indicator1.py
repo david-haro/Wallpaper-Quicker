@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2009 Canonical Ltd.
-#
-# Authors: Neil Jagdish Patel <neil.patel@canonical.com>
-#          Jono Bacon <jono@ubuntu.com>
+
 #
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of either or both of the following licenses:
